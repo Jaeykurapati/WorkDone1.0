@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "149291636742",
+    "firebase_url": "https://workdone-svec.firebaseio.com",
+    "project_id": "workdone-svec",
+    "storage_bucket": "workdone-svec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149291636742:android:de1497c8399c3eca",
+        "android_client_info": {
+          "package_name": "com.workdone.svec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "149291636742-m7tkg6j7kha1a9159drvo49qacjtgtib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.workdone.svec",
+            "certificate_hash": "987cdca8f4de619b65765d26c38484066b966bed"
+          }
+        },
+        {
+          "client_id": "149291636742-eodhonef6mrg7bnvf3891rr730c346pi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIWQPg5zUN7zEDVPOhBMnUTMPTHY0vsdc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "149291636742-eodhonef6mrg7bnvf3891rr730c346pi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
