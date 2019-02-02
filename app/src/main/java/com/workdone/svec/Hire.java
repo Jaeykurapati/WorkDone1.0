@@ -36,7 +36,7 @@ public class Hire extends Fragment implements CardView.OnClickListener {
     TextView loca;
     private LocationManager locationManager;
     private LocationListener locationListener;
-    String str="";
+    public String str="";
     int PLACE_PICKER_REQUEST = 1;
     public PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
@@ -53,6 +53,8 @@ public class Hire extends Fragment implements CardView.OnClickListener {
         loca =(TextView)dialog.findViewById(R.id.loc);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
+        if(str!="")
+            dialog.dismiss();
         View myview = inflater.inflate(R.layout.fragment_hire, container, false);
             CardView transport, plumber, electrician, cengineer, construct, carpenter;
             transport = (CardView) myview.findViewById(R.id.transport);
@@ -109,7 +111,7 @@ public class Hire extends Fragment implements CardView.OnClickListener {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(getContext(), data);
-                loca.setText(place.getAddress()+" "+place.getName());
+                str=(place.getAddress()+" "+place.getName());
                 Toast.makeText(getActivity(), place.getAddress()+" "+place.getName(), Toast.LENGTH_LONG).show();
                 dialog.dismiss();
             }

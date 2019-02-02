@@ -57,7 +57,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.gethire:
-                fragment = new Hire();
+                fragment = new GetHireFragment();
                 break;
 
             case R.id.orders:

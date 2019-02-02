@@ -40,6 +40,8 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         txtclse=(TextView)dialog.findViewById(R.id.txtclose);
         txtclse.setText("X");
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
         dialog.show();
         manage=(TextView)dialog.findViewById(R.id.manage);
         manage.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +55,8 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         logout=(Button)dialog.findViewById(R.id.logout);
         txtclse.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 dialog.dismiss();
             }
         });

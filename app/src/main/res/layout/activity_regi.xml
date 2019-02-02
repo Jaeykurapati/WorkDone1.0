@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:id="@+id/loginscrn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile Registration"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp"
+            android:drawableStart="@drawable/ic_account_circle_black_24dp"
+            android:drawablePadding="10dp"
+            android:hint="User Name"
+            android:inputType="textEmailAddress" />
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:paddingTop="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/radioGroup1"
+                android:layout_marginLeft="15dp"
+                android:paddingTop="25dp"
+                android:layout_below="@+id/radioGroup1"
+                android:text="Female" />
+
+        </RadioGroup>
+        <EditText
+            android:id="@+id/Birthday"
+            android:drawablePadding="10dp"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_date_range_black_24dp"
+            android:clickable="true"
+            android:paddingTop="25dp"
+            android:hint="DOB"/>
+
+        <com.workdone.svec.MultiSpinner
+            android:id="@+id/mySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineProvider="background"
+            android:outlineSpotShadowColor="@color/black"
+            android:paddingTop="25dp"
+            spinner.setPrompt="Categories"
+            android:tooltipText="Category"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/pwd"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_home_black_24dp"
+            android:drawablePadding="10dp"
+            android:hint="Address"
+            android:inputType="textPassword"
+            android:paddingTop="25dp" />
+
+        <EditText
+            android:id="@+id/pwd1"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:drawablePadding="10dp"
+            android:paddingTop="25dp"
+            android:hint="Experience in Years"
+            android:inputType="numberDecimal"
+            />
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:id="@+id/worklocation"
+            android:hint="Work Location"
+            android:paddingTop="25dp"
+            android:drawableStart="@drawable/worklocation"
+            android:drawablePadding="10dp"/>
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Amount per Hour"
+            android:drawableStart="@drawable/ic_monetization_on_black_24dp"
+            android:drawablePadding="10dp"
+            android:paddingTop="25dp"
+            android:inputType="number"
+
+            />
+
+    </LinearLayout>
+</ScrollView>

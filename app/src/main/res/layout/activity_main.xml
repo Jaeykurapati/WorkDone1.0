@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_account_circle_black_24dp"
             android:drawablePadding="10dp"
-            android:hint="Email"
+            android:hint="Email(demo@wd.com)"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:drawablePadding="10dp"
-            android:hint="Password"
+            android:hint="Password(demo123)"
             android:inputType="textPassword"
             android:paddingTop="05dp" />
 

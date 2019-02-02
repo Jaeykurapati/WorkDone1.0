@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,8 +59,58 @@ public class MainActivity extends AppCompatActivity {
         buttonSignIn = (Button) findViewById(R.id.login);
         Signup = (TextView) findViewById(R.id.signup);
         progressDialog = new ProgressDialog(this);
-       reset = (TextView) findViewById(R.id.reset);
+        reset = (TextView) findViewById(R.id.reset);
+        editTextPassword.setOnKeyListener(new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event){
+                if(keyCode == event.KEYCODE_ENTER){
+                    String email = editTextEmail.getText().toString().trim();
+                    final String password = editTextPassword.getText().toString().trim();
 
+                    //checking if email and passwords are empty
+                    if (TextUtils.isEmpty(email)) {
+                        Toast.makeText(MainActivity.this, "Please enter email", Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+
+                    if (TextUtils.isEmpty(password)) {
+                        Toast.makeText(MainActivity.this, "Please enter password", Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+
+                    //if the email and password are not empty
+                    //displaying a progress dialog
+                    progressDialog.setMessage("Please Wait...");
+                    progressDialog.show();
+                    //logging in the user
+                    firebaseAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
+                                    if (!task.isSuccessful()) {
+                                        // there was an error
+                                        progressDialog.dismiss();
+                                        if (password.length() < 6) {
+                                            editTextPassword.setError(getString(R.string.minimum_password));
+                                        } else {
+                                            Toast.makeText(MainActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                        }
+                                    } else {
+                                        progressDialog.setMessage("Logging Please Wait...");
+                                        progressDialog.show();
+                                        Intent intent = new Intent(MainActivity.this, Dashboard.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                            });
+                }
+                return false;
+            }
+        });
         //attaching click listener
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -81,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
                                                 //if the email and password are not empty
                                                 //displaying a progress dialog
-
+                                                progressDialog.setMessage("Please Wait...");
+                                                progressDialog.show();
                                                 //logging in the user
                                                 firebaseAuth.signInWithEmailAndPassword(email, password)
                                                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
@@ -98,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                                                                         Toast.makeText(MainActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                                                     }
                                                                 } else {
-                                                                    progressDialog.setMessage("Logging Please Wait...");
+                                                                    progressDialog.setMessage("Please Wait...");
                                                                     progressDialog.show();
                                                                     Intent intent = new Intent(MainActivity.this, Dashboard.class);
                                                                     startActivity(intent);
