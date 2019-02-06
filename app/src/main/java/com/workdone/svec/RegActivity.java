@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegActivity extends AppCompatActivity{
     private EditText textemail;
@@ -96,8 +97,31 @@ public class RegActivity extends AppCompatActivity{
                                             Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 } else {
-                                    startActivity(new Intent(RegActivity.this, Dashboard.class));
-                                    finish();
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    user.sendEmailVerification()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        // email sent
+
+                                                        Toast.makeText(RegActivity.this, "Please verify your Email", Toast.LENGTH_SHORT).show();
+                                                        // after email is sent just logout the user and finish this activity
+                                                        FirebaseAuth.getInstance().signOut();
+                                                        startActivity(new Intent(RegActivity.this, MainActivity.class));
+                                                        finish();
+                                                    }
+                                                    else
+                                                    {
+                                                        // email not sent, so display message and restart the activity or do whatever you wish to do
+                                                        Toast.makeText(RegActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
+                                                        //restart this activity
+                                                        startActivity(new Intent(RegActivity.this, Dashboard.class));
+                                                        finish();
+
+                                                    }
+                                                }
+                                            });
                                 }
                             }
                         });

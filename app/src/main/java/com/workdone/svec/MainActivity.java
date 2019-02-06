@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private Button buttonSignIn;
@@ -150,11 +151,26 @@ public class MainActivity extends AppCompatActivity {
                                                                         Toast.makeText(MainActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                                                     }
                                                                 } else {
-                                                                    progressDialog.setMessage("Please Wait...");
-                                                                    progressDialog.show();
-                                                                    Intent intent = new Intent(MainActivity.this, Dashboard.class);
-                                                                    startActivity(intent);
-                                                                    finish();
+                                                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                                                    if (user.isEmailVerified())
+                                                                    {
+                                                                        // user is verified, so you can finish this activity or send user to activity which you want.
+                                                                        Intent intent = new Intent(MainActivity.this, Dashboard.class);
+                                                                        startActivity(intent);
+                                                                        finish();
+                                                                        Toast.makeText(MainActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        // email is not verified, so just prompt the message to the user and restart this activity.
+                                                                        // NOTE: don't forget to log out the user.
+                                                                        Toast.makeText(MainActivity.this, "Please verify your Email", Toast.LENGTH_SHORT).show();
+                                                                        FirebaseAuth.getInstance().signOut();
+
+                                                                        //restart this activity
+
+                                                                    }
+
                                                                 }
                                                             }
                                                         });

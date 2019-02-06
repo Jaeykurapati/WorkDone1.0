@@ -90,6 +90,5 @@
             android:paddingTop="15dp"
             android:text="Not have an account? Sign-Up Here"
             android:textAlignment="center" />
-
     </LinearLayout>
     </LinearLayout>

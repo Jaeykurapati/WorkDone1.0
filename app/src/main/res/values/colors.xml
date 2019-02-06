@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#888e97</color>
-    <color name="colorAccent">#ffff</color>
+    <color name="colorAccent">#888e97</color>
     <color name="bg_login">#26ae90</color>
     <color name="primaryDark">#292b3d</color>
     <color name="pink">#Fe104d</color>
@@ -30,6 +30,7 @@
     <color name="colorNavText">#060606</color>
         <color name="lbl_name">#333333</color>
         <color name="btn_logut_bg">#ff6861</color>
+    <color name="alerttextcolor">#000</color>
     <color name="background_color">#009688</color>
     <color name="black">#000000</color>
     <color name="white_greyish">#EEEEEE</color>
