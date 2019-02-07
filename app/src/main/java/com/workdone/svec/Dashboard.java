@@ -52,6 +52,8 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 loadFragment(fragment);
             }
         });
+        TextView email =(TextView)dialog.findViewById(R.id.email);
+        email.setText(firebaseAuth.getCurrentUser().getEmail());
         logout=(Button)dialog.findViewById(R.id.logout);
         txtclse.setOnClickListener(new View.OnClickListener() {
             @Override

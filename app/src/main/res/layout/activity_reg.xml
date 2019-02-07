@@ -40,61 +40,65 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_account_circle_black_24dp"
-                android:drawablePadding="10dp"
-                android:hint="Email"
-                android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:background="@drawable/edittextbg"
+            android:drawableStart="@drawable/ic_account_circle_black_24dp"
+            android:drawablePadding="10dp"
+            android:hint="Email"
+            android:textSize="15sp"
+            android:inputType="textEmailAddress" />
 
-            <EditText
-                android:id="@+id/pwd"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_lock_black_24dp"
-                android:drawablePadding="10dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:paddingTop="05dp" />
+        <EditText
+            android:id="@+id/pwd1"
+            android:layout_width="300dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="45dp"
+            android:background="@drawable/edittextbg"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:textSize="15sp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp" />
 
-            <EditText
-                android:id="@+id/pwd1"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_lock_black_24dp"
-                android:drawablePadding="10dp"
-                android:hint="Confirm Password"
-                android:inputType="textPassword"
-                android:paddingTop="05dp" />
+        <EditText
+            android:id="@+id/pwd"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittextbg"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:drawablePadding="10dp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:textSize="15sp" />
 
-            <Button
-                android:id="@+id/reg"
-                android:layout_width="140dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/buttonstyle"
-                android:drawableEnd="@drawable/ic_send_black_24dp"
-                android:text="Sign-Up"
-                android:textColor="#fff" />
+        <Button
+            android:id="@+id/reg"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/buttonstyle"
+            android:drawableEnd="@drawable/ic_send_black_24dp"
+            android:text="Sign-Up"
+            android:textColor="#fff" />
 
-            <TextView
-                android:id="@+id/login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-                android:text="Have Account? Login here"
-                android:textAlignment="center" />
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:text="Have Account? Login here"
+            android:textAlignment="center" />
 
 
-
-        </LinearLayout>
+    </LinearLayout>
     </LinearLayout>

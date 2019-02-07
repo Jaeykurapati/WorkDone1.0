@@ -71,11 +71,13 @@ public class MainActivity extends AppCompatActivity {
                     //checking if email and passwords are empty
                     if (TextUtils.isEmpty(email)) {
                         Toast.makeText(MainActivity.this, "Please enter email", Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                         return false;
                     }
 
                     if (TextUtils.isEmpty(password)) {
                         Toast.makeText(MainActivity.this, "Please enter password", Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                         return false;
                     }
 
@@ -123,11 +125,13 @@ public class MainActivity extends AppCompatActivity {
                                                 //checking if email and passwords are empty
                                                 if (TextUtils.isEmpty(email)) {
                                                     Toast.makeText(MainActivity.this, "Please enter email", Toast.LENGTH_LONG).show();
+                                                    progressDialog.dismiss();
                                                     return;
                                                 }
 
                                                 if (TextUtils.isEmpty(password)) {
                                                     Toast.makeText(MainActivity.this, "Please enter password", Toast.LENGTH_LONG).show();
+                                                    progressDialog.dismiss();
                                                     return;
                                                 }
 
@@ -149,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
                                                                         editTextPassword.setError(getString(R.string.minimum_password));
                                                                     } else {
                                                                         Toast.makeText(MainActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                                                        progressDialog.dismiss();
                                                                     }
                                                                 } else {
                                                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -159,12 +164,14 @@ public class MainActivity extends AppCompatActivity {
                                                                         startActivity(intent);
                                                                         finish();
                                                                         Toast.makeText(MainActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+                                                                        progressDialog.dismiss();
                                                                     }
                                                                     else
                                                                     {
                                                                         // email is not verified, so just prompt the message to the user and restart this activity.
                                                                         // NOTE: don't forget to log out the user.
                                                                         Toast.makeText(MainActivity.this, "Please verify your Email", Toast.LENGTH_SHORT).show();
+                                                                        progressDialog.dismiss();
                                                                         FirebaseAuth.getInstance().signOut();
 
                                                                         //restart this activity
