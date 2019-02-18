@@ -20,7 +20,16 @@ public class User  {
     public User(){
 
     }
-    public User(String username,String gender,String date, List<String> cate,String adr,long exp,String location,long amount,String email){
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public User(String username, String gender, String date, List<String> cate, String adr, long exp, String location, long amount, String email){
         this.username=username;
         this.gender=gender;
         this.dob=date;

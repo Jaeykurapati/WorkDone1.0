@@ -211,19 +211,11 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
                 User user=new User();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 geoFire = new GeoFire(database.getReference().child("geofire_location"));
-
                 geoFire.setLocation(userId,new GeoLocation(lat, lag),new
                         GeoFire.CompletionListener(){
                             @Override
                             public void onComplete(String key, DatabaseError error) {
                                 //Do some stuff if you want to
-                                if (error != null){
-                                    Toast.makeText(getActivity(), "Location stored", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(getActivity(), "Write Failed:\t" + error.getMessage(),Toast.LENGTH_LONG).show();
-                                }
-
-
                             }
                         });
                 user.writeUser(userId,username,gender,date,categories,addr,exp,location,amount,firebaseAuth.getCurrentUser().getEmail());
