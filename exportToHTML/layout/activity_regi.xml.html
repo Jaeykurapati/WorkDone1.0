@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>activity_regi.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(232,191,106); }
+.s1 { color: rgb(186,186,186); }
+.s2 { color: rgb(106,135,89); }
+.s3 { color: rgb(169,183,198); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+activity_regi.xml</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">&lt;?</span><span class="s1">xml version=</span><span class="s2">&quot;1.0&quot; </span><span class="s1">encoding=</span><span class="s2">&quot;utf-8&quot;</span><span class="s0">?&gt;</span><span class="s3"> 
+</span><span class="s0">&lt;LinearLayout </span><span class="s1">android:layout_height=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+    </span><span class="s1">xmlns:android=</span><span class="s2">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_gravity=</span><span class="s2">&quot;fill&quot;</span><span class="s0"> 
+    </span><span class="s1">android:background=</span><span class="s2">&quot;@drawable/gradient&quot;</span><span class="s0">&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;ScrollView </span><span class="s1">xmlns:android=</span><span class="s2">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;500dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_gravity=</span><span class="s2">&quot;center_vertical|center&quot;</span><span class="s0"> 
+        &gt;</span><span class="s3"> 
+ 
+        </span><span class="s0">&lt;LinearLayout </span><span class="s1">xmlns:android=</span><span class="s2">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="s0"> 
+            </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+            </span><span class="s1">android:layout_height=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+            </span><span class="s1">android:orientation=</span><span class="s2">&quot;vertical&quot;</span><span class="s0">&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;TextView 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/loginscrn&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_gravity=</span><span class="s2">&quot;center&quot;</span><span class="s0"> 
+                </span><span class="s1">android:text=</span><span class="s2">&quot;Profile Registration&quot;</span><span class="s0"> 
+                </span><span class="s1">android:textSize=</span><span class="s2">&quot;35dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:textStyle=</span><span class="s2">&quot;bold&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;EditText 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/email&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;350dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawableStart=</span><span class="s2">&quot;@drawable/ic_account_circle_black_24dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawablePadding=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:hint=</span><span class="s2">&quot;User Name&quot;</span><span class="s0"> 
+                </span><span class="s1">android:inputType=</span><span class="s2">&quot;textEmailAddress&quot;</span><span class="s0"> 
+                </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;25dp&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;RadioGroup 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/radioGroup1&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/textView1&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_centerHorizontal=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+                </span><span class="s1">android:orientation=</span><span class="s2">&quot;horizontal&quot;</span><span class="s0">&gt;</span><span class="s3"> 
+ 
+                </span><span class="s0">&lt;RadioButton 
+                    </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/radioButton1&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;25dp&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:checked=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:text=</span><span class="s2">&quot;Male&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+ 
+                </span><span class="s0">&lt;RadioButton 
+                    </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/radioButton2&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/radioGroup1&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:layout_alignLeft=</span><span class="s2">&quot;@+id/radioGroup1&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:layout_marginLeft=</span><span class="s2">&quot;15dp&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;25dp&quot;</span><span class="s0"> 
+                    </span><span class="s1">android:text=</span><span class="s2">&quot;Female&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;/RadioGroup&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;EditText 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/birthday&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;350dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:clickable=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawableStart=</span><span class="s2">&quot;@drawable/ic_date_range_black_24dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawablePadding=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:hint=</span><span class="s2">&quot;DOB&quot;</span><span class="s0"> 
+                </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;25dp&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;TextView 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/categories&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;350dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_marginLeft=</span><span class="s2">&quot;5dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:clickable=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawableStart=</span><span class="s2">&quot;@drawable/ic_menu_black_24dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawablePadding=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:hint=</span><span class="s2">&quot;Categories&quot;</span><span class="s0"> 
+                </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;25dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:textSize=</span><span class="s2">&quot;20sp&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;EditText 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/address&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;350dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawableLeft=</span><span class="s2">&quot;@drawable/ic_home_black_24dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawablePadding=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:hint=</span><span class="s2">&quot;City&quot;</span><span class="s0"> 
+                </span><span class="s1">android:inputType=</span><span class="s2">&quot;text&quot;</span><span class="s0"> 
+                </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;25dp&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+            </span><span class="s0">&lt;EditText 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;350dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:hint=</span><span class="s2">&quot;Mobile Number&quot;</span><span class="s0"> 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/mobile&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawablePadding=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawableStart=</span><span class="s2">&quot;@drawable/ic_phone_black_24dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+            </span><span class="s0">&lt;Button 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:text=</span><span class="s2">&quot;Verify&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_gravity=</span><span class="s2">&quot;center&quot;</span><span class="s0">/&gt;</span><span class="s3"> 
+            </span><span class="s0">&lt;EditText 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;200dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:hint=</span><span class="s2">&quot;Enter OTP&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_gravity=</span><span class="s2">&quot;center&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+            </span><span class="s0">&lt;EditText 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;350dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/exp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawableStart=</span><span class="s2">&quot;@drawable/ic_lock_black_24dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawablePadding=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:hint=</span><span class="s2">&quot;Experience in Years&quot;</span><span class="s0"> 
+                </span><span class="s1">android:inputType=</span><span class="s2">&quot;number&quot;</span><span class="s0"> 
+                </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;25dp&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;EditText 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;350dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawableStart=</span><span class="s2">&quot;@drawable/ic_monetization_on_black_24dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawablePadding=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:hint=</span><span class="s2">&quot;Amount per Hour&quot;</span><span class="s0"> 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/amount&quot;</span><span class="s0"> 
+                </span><span class="s1">android:inputType=</span><span class="s2">&quot;number&quot;</span><span class="s0"> 
+                </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;25dp&quot;</span><span class="s0"> 
+ 
+                /&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;EditText 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/worklocation&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;350dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:clickable=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+                </span><span class="s1">android:contextClickable=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawableStart=</span><span class="s2">&quot;@drawable/worklocation&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawablePadding=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:hint=</span><span class="s2">&quot;Work Location&quot;</span><span class="s0"> 
+                </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;25dp&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+            </span><span class="s0">&lt;Button 
+                </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+                </span><span class="s1">android:text=</span><span class="s2">&quot;Register&quot;</span><span class="s0"> 
+                </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/register&quot;</span><span class="s0"> 
+                </span><span class="s1">android:clickable=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+                </span><span class="s1">android:background=</span><span class="s2">&quot;@drawable/recbutton&quot;</span><span class="s0"> 
+                </span><span class="s1">android:drawableStart=</span><span class="s2">&quot;@drawable/ic_chevron_right_black_24dp&quot;</span><span class="s0"> 
+                </span><span class="s1">android:layout_gravity=</span><span class="s2">&quot;center&quot;</span><span class="s0">/&gt;</span><span class="s3"> 
+        </span><span class="s0">&lt;/LinearLayout&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;/ScrollView&gt;</span><span class="s3"> 
+</span><span class="s0">&lt;/LinearLayout&gt;</span></pre>
+</body>
+</html>
