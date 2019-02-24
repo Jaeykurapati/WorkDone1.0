@@ -15,6 +15,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ResetActivity extends AppCompatActivity {
 
     private EditText inputEmail;
@@ -50,8 +53,16 @@ public class ResetActivity extends AppCompatActivity {
                 String email = inputEmail.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+                    inputEmail.setError("Enter Email");
+                    progressDialog.dismiss();
                     return;
+                }
+                String emailPattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+                Pattern p = Pattern.compile(emailPattern);
+                Matcher m = p.matcher(email);
+                if(m.matches()==false){
+                    inputEmail.setError("Enter valid email");
+                    progressDialog.dismiss();
                 }
 
                 auth.sendPasswordResetEmail(email)
@@ -65,6 +76,7 @@ public class ResetActivity extends AppCompatActivity {
                                     startActivity(new Intent(ResetActivity.this, MainActivity.class));
                                 } else {
                                     Toast.makeText(ResetActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
                                 }
                             }
                         });

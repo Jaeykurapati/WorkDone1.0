@@ -22,6 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
     private Button buttonSignIn;
     private EditText editTextEmail;
@@ -70,13 +73,20 @@ public class MainActivity extends AppCompatActivity {
 
                     //checking if email and passwords are empty
                     if (TextUtils.isEmpty(email)) {
-                        Toast.makeText(MainActivity.this, "Please enter email", Toast.LENGTH_LONG).show();
+
+                        editTextEmail.setError("Enter email");
                         progressDialog.dismiss();
                         return false;
                     }
-
+                    String emailPattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+                    Pattern p = Pattern.compile(emailPattern);
+                    Matcher m = p.matcher(email);
+                    if(m.matches()==false){
+                        editTextEmail.setError("Enter valid email");
+                        progressDialog.dismiss();
+                    }
                     if (TextUtils.isEmpty(password)) {
-                        Toast.makeText(MainActivity.this, "Please enter password", Toast.LENGTH_LONG).show();
+                        editTextPassword.setError("Enter Password");
                         progressDialog.dismiss();
                         return false;
                     }
@@ -124,13 +134,20 @@ public class MainActivity extends AppCompatActivity {
 
                                                 //checking if email and passwords are empty
                                                 if (TextUtils.isEmpty(email)) {
-                                                    Toast.makeText(MainActivity.this, "Please enter email", Toast.LENGTH_LONG).show();
+
+                                                    editTextEmail.setError("Enter email");
                                                     progressDialog.dismiss();
                                                     return;
                                                 }
-
+                                                String emailPattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+                                                Pattern p = Pattern.compile(emailPattern);
+                                                Matcher m = p.matcher(email);
+                                                if(m.matches()==false){
+                                                    editTextEmail.setError("Enter valid email");
+                                                    progressDialog.dismiss();
+                                                }
                                                 if (TextUtils.isEmpty(password)) {
-                                                    Toast.makeText(MainActivity.this, "Please enter password", Toast.LENGTH_LONG).show();
+                                                    editTextPassword.setError("Enter Password");
                                                     progressDialog.dismiss();
                                                     return;
                                                 }
@@ -150,7 +167,8 @@ public class MainActivity extends AppCompatActivity {
                                                                 if (!task.isSuccessful()) {
                                                                     // there was an error
                                                                     if (password.length() < 6) {
-                                                                        editTextPassword.setError(getString(R.string.minimum_password));
+                                                                        editTextPassword.setError("Inavlid Details");
+                                                                        progressDialog.dismiss();
                                                                     } else {
                                                                         Toast.makeText(MainActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                                                         progressDialog.dismiss();

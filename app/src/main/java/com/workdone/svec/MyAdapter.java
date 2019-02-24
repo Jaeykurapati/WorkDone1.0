@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter{
 
     Context context;
-    ArrayList<User> profiles;
+    ArrayList<User> profiles=new ArrayList<User>();
 
     public MyAdapter(Context c , ArrayList<User> p)
     {

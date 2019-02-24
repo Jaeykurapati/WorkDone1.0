@@ -18,6 +18,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegActivity extends AppCompatActivity{
     private EditText textemail;
     private EditText pass;
@@ -64,20 +67,31 @@ public class RegActivity extends AppCompatActivity{
                 String password1 = pass1.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    textemail.setError("Enter Email");
+                    progressDialog.dismiss();
                     return;
                 }
+                String emailPattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+                Pattern p = Pattern.compile(emailPattern);
+                Matcher m = p.matcher(email);
+                if(m.matches()==false){
+                    textemail.setError("Enter valid email");
+                    progressDialog.dismiss();
+                }
                 if(TextUtils.equals(password,password1)==false){
-                    Toast.makeText(getApplicationContext(), "Password didn`t Match", Toast.LENGTH_SHORT).show();
+                    pass.setError("Password didn`t match");
+                    progressDialog.dismiss();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    pass1.setError("Enter Password");
+                    progressDialog.dismiss();
                     return;
                 }
 
                 if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    pass.setError("Min 6 characters");
+                    progressDialog.dismiss();
                     return;
                 }
 
@@ -104,7 +118,7 @@ public class RegActivity extends AppCompatActivity{
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
                                                         // email sent
-
+                                                        progressDialog.dismiss();
                                                         Toast.makeText(RegActivity.this, "Please verify your Email", Toast.LENGTH_SHORT).show();
                                                         // after email is sent just logout the user and finish this activity
                                                         FirebaseAuth.getInstance().signOut();
@@ -113,9 +127,9 @@ public class RegActivity extends AppCompatActivity{
                                                     }
                                                     else
                                                     {
+                                                        progressDialog.dismiss();
                                                         // email not sent, so display message and restart the activity or do whatever you wish to do
-                                                        Toast.makeText(RegActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
-                                                        //restart this activity
+                                                        textemail.setError("Invalid Email");//restart this activity
                                                         startActivity(new Intent(RegActivity.this, Dashboard.class));
                                                         finish();
 

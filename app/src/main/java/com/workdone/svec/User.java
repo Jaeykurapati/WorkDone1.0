@@ -14,13 +14,10 @@ public class User  {
     public List<String> categories=new ArrayList<String>();
     public String address="";
     public Long exp;
+    public String no;
     public Long amount;
     public String location="";
     private DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
-    public User(){
-
-    }
-
     public String getUsername() {
         return username;
     }
@@ -28,20 +25,36 @@ public class User  {
     public String getEmail() {
         return email;
     }
+    public String getNo(){
+            return no;
+    }
 
-    public User(String username, String gender, String date, List<String> cate, String adr, long exp, String location, long amount, String email){
+    public User(String username, String gender, String date, List<String> cate, String adr,String no ,long exp, String location, long amount, String email){
         this.username=username;
         this.gender=gender;
         this.dob=date;
         this.categories=cate;
         this.address=adr;
+        this.no=no;
         this.email=email;
         this.exp=new Long(exp);
         this.amount=new Long(amount);
         this.location=location;
     }
-    public void writeUser(String userId,String username,String gender,String date, List<String> cate,String adr,long exp,String location, long amount,String email){
-        User user=new User(username,gender,date,cate,adr,exp,location,amount,email);
+    public User(){
+
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Long getExp() {
+        return exp;
+    }
+
+    public void writeUser(String userId, String username, String gender, String date, List<String> cate, String adr, String no, long exp, String location, long amount, String email){
+        User user=new User(username,gender,date,cate,adr,no,exp,location,amount,email);
         mDatabase.child("Users").child(userId).setValue(user);
 
     }
