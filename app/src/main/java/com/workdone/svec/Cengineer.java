@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -60,12 +62,15 @@ public class Cengineer extends Fragment {
     DatabaseReference db;
     Set<String> set=new LinkedHashSet<String>();
     public PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-    EditText dist,loc;
+    public Controller aController;
+    EditText dist;
+    TextView loc;
     private RecyclerView mRecyclerView;
     private GeoFire geoFire;
     private MyAdapter mListadapter;
     private LatLng temp;
     Dialog dialog;
+    Button porder;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,10 +79,12 @@ public class Cengineer extends Fragment {
         mRecyclerView = (RecyclerView) myview.findViewById(R.id.recycleview);
         ArrayList<User> data = new ArrayList<User>();
         Set<User> dataset = new HashSet<User>();
-        loc=(EditText) myview.findViewById(R.id.location);
+        loc=(TextView) myview.findViewById(R.id.location);
+        aController= (Controller) getActivity().getApplicationContext();
         dist=(EditText)myview.findViewById(R.id.distance);
         details=(Button) myview.findViewById(R.id.details);
         show=(Button) myview.findViewById(R.id.showd);
+        porder=(Button)myview.findViewById(R.id.place);
         show.setEnabled(false);
         loc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +105,7 @@ public class Cengineer extends Fragment {
             @Override
             public void onClick(View v) {
                 mRecyclerView.invalidate();
+                aController.reset();
                 str=null;
                 set.clear();
                 data.clear();
@@ -109,6 +117,10 @@ public class Cengineer extends Fragment {
                         show.setEnabled(true);
                     }
                 }, 5000);
+                if(loc.getText().toString().isEmpty()){
+                    loc.setError("Pick Location");
+                    return;
+                }
                 distance=Double.parseDouble(dist.getText().toString());
                 database = FirebaseDatabase.getInstance();
                 geoFire = new GeoFire(database.getReference().child("geofire_location"));
@@ -125,7 +137,7 @@ public class Cengineer extends Fragment {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         User profile = dataSnapshot.getValue(User.class);
-                                        if (profile.categories.contains("Electrician"))
+                                        if (profile.categories.contains("ComputerEngineer"))
                                             data.add(profile);
 
                                     }
@@ -163,6 +175,17 @@ public class Cengineer extends Fragment {
                     }
 
                 });
+            }
+        });
+        porder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(aController.getProductsArraylistSize()<1){
+                    Toast.makeText(getContext(), "Please select atleast one Professional", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    PlaceOrder();
+                }
             }
         });
         show.setOnClickListener(new View.OnClickListener() {
@@ -210,12 +233,20 @@ public class Cengineer extends Fragment {
                 break;
         }
     }
+    public void PlaceOrder(){
+        FragmentManager mFragmentMgr= getFragmentManager();
+        FragmentTransaction mTransaction = mFragmentMgr.beginTransaction();
+        mTransaction.replace(R.id.fragment_container, new Cart())
+                .addToBackStack(null)
+                .commit();
+    }
     public void ShowPopup(User user){
         TextView txtclse,name,no;
         Button logout;
         dialog.setContentView(R.layout.profileview);
         txtclse=(TextView)dialog.findViewById(R.id.txtclose);
         txtclse.setText("X");
+        Button pickup=(Button)dialog.findViewById(R.id.pickup);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
@@ -232,6 +263,9 @@ public class Cengineer extends Fragment {
         TextView city=(TextView)dialog.findViewById(R.id.city);
         city.setText(user.getAddress().toString());
         Button back=(Button)dialog.findViewById(R.id.back);
+        if(aController.find(user)==true){
+            pickup.setText("Drop");
+        }
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -248,16 +282,27 @@ public class Cengineer extends Fragment {
                 dialog.dismiss();
             }
         });
+        pickup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pickup.getText().toString().equalsIgnoreCase("PickUp"))
+                aController.setProducts(user);
+                else if(pickup.getText().toString().equalsIgnoreCase("Drop"))
+                    aController.removeProducts(user);
+                dialog.dismiss();
+            }
+        });
     }
     @Override
     public void   onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        loc.setError(null);
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(getContext(), data);
                 lat = place.getLatLng().latitude;
                 lag = place.getLatLng().longitude;
-                String temp=String.valueOf(lat)+"\n"+String.valueOf(lag);
+                String temp=String.valueOf(lat)+"\t"+String.valueOf(lag);
                 loc.setText(place.getName());
             }
         }

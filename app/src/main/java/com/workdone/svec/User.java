@@ -1,5 +1,9 @@
 package com.workdone.svec;
 
+import android.support.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -15,9 +19,11 @@ public class User  {
     public String address="";
     public Long exp;
     public String no;
+    public boolean flag=true;
     public Long amount;
     public String location="";
     private DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
+
     public String getUsername() {
         return username;
     }
@@ -29,7 +35,7 @@ public class User  {
             return no;
     }
 
-    public User(String username, String gender, String date, List<String> cate, String adr,String no ,long exp, String location, long amount, String email){
+    public User(String username, String gender, String date, List<String> cate, String adr,String no ,long exp, String location,  String email){
         this.username=username;
         this.gender=gender;
         this.dob=date;
@@ -38,9 +44,14 @@ public class User  {
         this.no=no;
         this.email=email;
         this.exp=new Long(exp);
-        this.amount=new Long(amount);
+        //this.amount=new Long(amount);
         this.location=location;
     }
+
+    public Long getAmount() {
+        return amount;
+    }
+
     public User(){
 
     }
@@ -53,9 +64,23 @@ public class User  {
         return exp;
     }
 
-    public void writeUser(String userId, String username, String gender, String date, List<String> cate, String adr, String no, long exp, String location, long amount, String email){
-        User user=new User(username,gender,date,cate,adr,no,exp,location,amount,email);
-        mDatabase.child("Users").child(userId).setValue(user);
-
+    public boolean writeUser(String userId, String username, String gender, String date, List<String> cate, String adr, String no, long exp, String location,  String email){
+        User user=new User(username,gender,date,cate,adr,no,exp,location,email);
+        mDatabase.child("Users").child(userId).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // Write was successful!
+                // ...
+                flag=true;
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Write failed
+                        // ...
+                        flag=false;
+                    }
+                });
+        return flag;
     }
 }

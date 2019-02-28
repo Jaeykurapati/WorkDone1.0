@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Construction">
-
-    <!-- TODO: Update blank fragment layout -->
+    android:background="@drawable/gradient"
+    android:layout_gravity="center"
+    android:orientation="vertical">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/place_autocomplete_powered_by_google_height"
+        android:text="Work Details" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp">
 
-</FrameLayout>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:background="@color/white"
+            android:drawableStart="@drawable/locationsmall"
+            android:drawablePadding="10dp"
+            android:clickable="true"
+            android:id="@+id/location"
+            />
+        <EditText
+            android:layout_width="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_height="45dp"
+            android:id="@+id/distance"
+            android:text="20"
+            android:background="@color/white"
+            android:inputType="number"/>
+
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GetDetails"
+        android:id="@+id/details"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Details"
+        android:layout_gravity="center"
+        android:id="@+id/showd"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:background="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycleview"/>
+    </LinearLayout>
+</LinearLayout>

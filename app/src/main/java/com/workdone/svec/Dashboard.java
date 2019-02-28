@@ -27,7 +27,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         //loading the default fragment
-        loadFragment(new HomeFragment());
+        loadFragment(new DashboardFragment());
         dialog=new Dialog(this);
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -54,6 +54,8 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
         });
         TextView email =(TextView)dialog.findViewById(R.id.email);
         email.setText(firebaseAuth.getCurrentUser().getEmail());
+        TextView name =(TextView)dialog.findViewById(R.id.name);
+        name.setText(firebaseAuth.getCurrentUser().getDisplayName());
         logout=(Button)dialog.findViewById(R.id.logout);
         txtclse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,11 +79,11 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
 
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                fragment = new HomeFragment();
+                fragment = new DashboardFragment();
                 break;
 
             case R.id.navigation_dashboard:
-                fragment = new DashboardFragment();
+                fragment = new Cart();
                 break;
 
             case R.id.navigation_notifications:

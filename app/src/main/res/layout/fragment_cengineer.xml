@@ -1,65 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    android:layout_gravity="center"
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="@dimen/place_autocomplete_powered_by_google_height"
-        android:text="Work Details" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="25dp">
+    android:layout_gravity="fill"
+    android:layout_height="wrap_content">
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="45dp"
-            android:background="@color/white"
-            android:drawableStart="@drawable/locationsmall"
-            android:drawablePadding="10dp"
-            android:clickable="true"
-            android:id="@+id/location"
-            />
-        <EditText
-            android:layout_width="100dp"
-            android:layout_marginLeft="30dp"
-            android:layout_height="45dp"
-            android:id="@+id/distance"
-            android:text="20"
-            android:background="@color/white"
-            android:inputType="number"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="3dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
 
-    </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="525dp">
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circle"
+                    android:padding="10dp"
+                    android:src="@drawable/locationsmall"
+                    android:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Work Location"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="300dp"
+                android:textColor="@color/black"
+                android:layout_height="45dp"
+                android:layout_alignEnd="@+id/register"
+                android:layout_marginTop="130dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/edittextbg"
+                android:clickable="true"
+                android:drawableStart="@drawable/locationsmall"
+                android:drawablePadding="10dp"
+                android:gravity="center_horizontal"
+                android:hint="Pick Location" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/distlayout"
+                android:layout_gravity="center"
+                android:layout_marginTop="180dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Available Distance:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/distance"
+                    android:layout_width="100dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20sp"
+                    android:background="@color/white"
+                    android:inputType="number"
+                    android:text="20" />
+            </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/distlayout"
+    android:id="@+id/buttons"
+    android:layout_centerHorizontal="true">
+            <Button
+                android:id="@+id/details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:text="GetDetails" />
+
     <Button
+        android:id="@+id/showd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GetDetails"
-        android:id="@+id/details"
-        android:gravity="center"
-        android:layout_gravity="center"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Details"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:id="@+id/showd"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center">
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:id="@+id/recycleview"/>
-    </LinearLayout>
+        android:layout_marginEnd="15dp"
+        android:text="Show Details" />
+</LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/buttons"
+                android:layout_marginTop="05dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycleview"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/place"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@id/linearLayout1"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="370dp"
+                android:layout_marginRight="30dp"
+                android:background="@color/colorPrimary"
+                android:fontFamily="sans-serif-medium"
+                android:text="Place"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>

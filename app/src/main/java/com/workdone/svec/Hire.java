@@ -43,7 +43,7 @@ public class Hire extends Fragment implements CardView.OnClickListener {
                 break;
             case R.id.construction: fragment=new Construction();
                 break;
-            case R.id.cengineer: fragment=new Cengineer();
+            case R.id.cengineer: fragment=new ServiceReq();
                 break;
 
         }

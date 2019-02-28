@@ -49,7 +49,7 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
     private static final int MY_PERMISSION_FINE_LOCATION = 101;
     public String str="";
     int PLACE_PICKER_REQUEST = 1;
-    EditText loc,dob;
+    TextView loc,dob;
     Button reg;
     public PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
     TextView mItemSelected;
@@ -72,15 +72,15 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View myview= inflater.inflate(R.layout.activity_regi, container, false);
+        View myview= inflater.inflate(R.layout.skillreg, container, false);
         TextView cate=(TextView)myview.findViewById(R.id.categories);
         reg=(Button)myview.findViewById(R.id.register);
         mBuilder = new AlertDialog.Builder(getActivity());
         listItems = getResources().getStringArray(R.array.categories);
         checkedItems = new boolean[listItems.length];
-        loc=(EditText)myview.findViewById(R.id.worklocation);
+        loc=(TextView)myview.findViewById(R.id.worklocation);
         mItemSelected=(TextView)myview.findViewById(R.id.categories);
-        dob=(EditText)myview.findViewById(R.id.birthday);
+        dob=(TextView) myview.findViewById(R.id.date);
         DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
 
             // when dialog box is closed, below method will be called.
@@ -89,7 +89,7 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
                 String year1 = String.valueOf(selectedYear);
                 String month1 = String.valueOf(selectedMonth + 1);
                 String day1 = String.valueOf(selectedDay);
-                TextView tvDt = (TextView)myview.findViewById(R.id.birthday);
+                TextView tvDt = (TextView)myview.findViewById(R.id.date);
                 tvDt.setText(day1 + "/" + month1 + "/" + year1);
 
             }
@@ -182,8 +182,10 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
         });
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {EditText name=(EditText) myview.findViewById(R.id.email);
+            public void onClick(View v) {
+                EditText name=(EditText) myview.findViewById(R.id.name);
                 String username=name.getText().toString();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 EditText mobile =(EditText)myview.findViewById(R.id.mobile);
                 if(username.isEmpty())
                 {
@@ -195,7 +197,7 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
                     return;
                 }
                 Button reg=(Button)myview.findViewById(R.id.register);
-                EditText temp=(EditText) myview.findViewById(R.id.birthday);
+                TextView temp=(TextView) myview.findViewById(R.id.date);
                 String date=temp.getText().toString();
                 if(date.isEmpty()){
                     temp.setError("Enter your DOB");
@@ -217,9 +219,16 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
 
 // find the radioButton by returned id
                 RadioButton radioButton = (RadioButton)myview.findViewById(selectedId);
+                RadioButton radioButton1 = (RadioButton)myview.findViewById(R.id.radioButton1);
+                RadioButton radioButton2 = (RadioButton)myview.findViewById(R.id.radioButton2);
+
 
 // radioButton text
-                String gender = String.valueOf(radioButton.getText());
+                String gender="";
+                if(radioButton==radioButton1)
+                    gender="Male";
+                else
+                    gender="Female";
                 EditText temp3=(EditText) myview.findViewById(R.id.address);
                 String addr=temp3.getText().toString();
                 if(addr.isEmpty()) {
@@ -236,18 +245,18 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
                     return;
                 }
                 int exp=Integer.parseInt(expe.getText().toString());
-                 EditText temp4=(EditText) myview.findViewById(R.id.worklocation);
+                 TextView temp4=(TextView) myview.findViewById(R.id.worklocation);
                  if(temp4.getText().toString().isEmpty()){
                      temp4.setError("Enter WorkLocation");
                      return;
                  }
                  String location=temp4.getText().toString();
-                EditText temp5=(EditText) myview.findViewById(R.id.amount);
+                /*EditText temp5=(EditText) myview.findViewById(R.id.amount);
                  if(temp5.getText().toString().isEmpty()) {
                      temp5.setError("Enter Amount");
                      return;
                  }
-                int amount=Integer.parseInt(temp5.getText().toString());
+                int amount=Integer.parseInt(temp5.getText().toString());*/
                 User user=new User();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 geoFire = new GeoFire(database.getReference().child("geofire_location"));
@@ -258,8 +267,32 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
                                 //Do some stuff if you want to
                             }
                         });
-                user.writeUser(userId,username,gender,date,categories,addr,mno,exp,location,amount,firebaseAuth.getCurrentUser().getEmail());
+                boolean flag= user.writeUser(userId,username,gender,date,categories,addr,mno,exp,location,firebaseAuth.getCurrentUser().getEmail());
                 FragmentManager mFragmentMgr= getFragmentManager();
+                if(flag==true){
+                    builder.setMessage("Registration")
+                            .setCancelable(false)
+                            .setPositiveButton("Success", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //do things
+                                    dialog.dismiss();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else{
+                    builder.setMessage("Registration")
+                            .setCancelable(false)
+                            .setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //do things
+                                    dialog.dismiss();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
                 FragmentTransaction mTransaction = mFragmentMgr.beginTransaction();
                 mTransaction.replace(R.id.fragment_container, new DashboardFragment())
                         .addToBackStack(null)

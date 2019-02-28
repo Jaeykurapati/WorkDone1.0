@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment{
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -19,7 +20,6 @@ public class ProfileFragment extends Fragment{
         //with the fragment you want to inflate
         //like if the class is HomeFragment it should have R.layout.home_fragment
         //if it is DashboardFragment it should have R.layout.fragment_dashboard
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         View myview = inflater.inflate(R.layout.fragment_profile, null);
         Button logout = (Button) myview.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {

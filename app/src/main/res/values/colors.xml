@@ -5,10 +5,13 @@
     <color name="colorAccent">#888e97</color>
     <color name="bg_login">#26ae90</color>
     <color name="primaryDark">#292b3d</color>
+    <color name="transparent">#00000000</color>
     <color name="pink">#Fe104d</color>
         <color name="bg_register">#2e3237</color>
         <color name="bg_main">#428bca</color>
         <color name="white">#ffffff</color>
+    <color name="editTextBG">#DADADA</color>
+    <color name="textColor">#6e6e6e</color>
     <color name="startblue">#09c6df</color>
     <color name="endblue">#0bcce6</color>
     <color name="graylight">#fafafa</color>
