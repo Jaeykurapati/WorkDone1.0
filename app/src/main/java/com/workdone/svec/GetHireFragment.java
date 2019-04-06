@@ -36,6 +36,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -49,12 +50,14 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
     private static final int MY_PERMISSION_FINE_LOCATION = 101;
     public String str="";
     int PLACE_PICKER_REQUEST = 1;
-    TextView loc,dob;
+    TextView loc,dob,temp4,dtemp,temp2;
+    EditText name,temp3,expe,mobile;
     Button reg;
     public PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
     TextView mItemSelected;
     private GeoFire geoFire;
     private LatLng temp;
+    User user;
     Double lat,lag;
     String[] listItems;
     boolean[] checkedItems;
@@ -75,12 +78,47 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
         View myview= inflater.inflate(R.layout.skillreg, container, false);
         TextView cate=(TextView)myview.findViewById(R.id.categories);
         reg=(Button)myview.findViewById(R.id.register);
+        name=(EditText) myview.findViewById(R.id.name);
         mBuilder = new AlertDialog.Builder(getActivity());
         listItems = getResources().getStringArray(R.array.categories);
         checkedItems = new boolean[listItems.length];
         loc=(TextView)myview.findViewById(R.id.worklocation);
         mItemSelected=(TextView)myview.findViewById(R.id.categories);
         dob=(TextView) myview.findViewById(R.id.date);
+        mobile=(EditText)myview.findViewById(R.id.mobile);
+        temp3=(EditText) myview.findViewById(R.id.address);
+        expe=(EditText)myview.findViewById(R.id.exp);
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference(userId);
+        /*databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                user=dataSnapshot.getValue(User.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+                Toast.makeText(getContext(),user.getUsername(),Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        if(user.isProfile==true){
+            name.setText(user.getUsername());
+            mobile.setText(user.getNo());
+            temp3.setText(user.getAddress());
+            expe.setText(String.valueOf(user.getExp()));
+            loc.setText(user.getLocation());
+        }*/
         DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
 
             // when dialog box is closed, below method will be called.
@@ -183,10 +221,8 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText name=(EditText) myview.findViewById(R.id.name);
                 String username=name.getText().toString();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                EditText mobile =(EditText)myview.findViewById(R.id.mobile);
                 if(username.isEmpty())
                 {
                     name.setError("Enter username");
@@ -197,14 +233,14 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
                     return;
                 }
                 Button reg=(Button)myview.findViewById(R.id.register);
-                TextView temp=(TextView) myview.findViewById(R.id.date);
-                String date=temp.getText().toString();
+                dtemp=(TextView) myview.findViewById(R.id.date);
+                String date=dtemp.getText().toString();
                 if(date.isEmpty()){
-                    temp.setError("Enter your DOB");
+                    dtemp.setError("Enter your DOB");
                     return;
                 }
                 List<String> categories=new ArrayList<String>();
-                TextView temp2=(TextView) myview.findViewById(R.id.categories);
+                temp2=(TextView) myview.findViewById(R.id.categories);
                 if(temp2.getText().toString().isEmpty()){
                     temp2.setError("Choose Categories");
                     return;
@@ -229,7 +265,6 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
                     gender="Male";
                 else
                     gender="Female";
-                EditText temp3=(EditText) myview.findViewById(R.id.address);
                 String addr=temp3.getText().toString();
                 if(addr.isEmpty()) {
                     temp3.setError("Enter City");
@@ -239,7 +274,6 @@ public class GetHireFragment extends Fragment implements DatePickerDialog.OnDate
                 if(mno.isEmpty()){
                     mobile.setError("Enter Mobile Number");
                 }
-                EditText expe=(EditText)myview.findViewById(R.id.exp);
                 if(expe.getText().toString().isEmpty()) {
                     expe.setError("Enter Experience");
                     return;

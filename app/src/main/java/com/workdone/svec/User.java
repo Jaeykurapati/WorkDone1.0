@@ -20,6 +20,7 @@ public class User  {
     public Long exp;
     public String no;
     public boolean flag=true;
+    public boolean isProfile=false;
     public Long amount;
     public String location="";
     private DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
@@ -56,6 +57,10 @@ public class User  {
 
     }
 
+    public String getLocation() {
+        return location;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -66,12 +71,14 @@ public class User  {
 
     public boolean writeUser(String userId, String username, String gender, String date, List<String> cate, String adr, String no, long exp, String location,  String email){
         User user=new User(username,gender,date,cate,adr,no,exp,location,email);
+        user.isProfile=true;
         mDatabase.child("Users").child(userId).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 // Write was successful!
                 // ...
                 flag=true;
+                isProfile=true;
             }
         }).addOnFailureListener(new OnFailureListener() {
                     @Override

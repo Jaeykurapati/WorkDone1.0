@@ -91,7 +91,7 @@ public class Dashboard extends AppCompatActivity implements BottomNavigationView
                 break;
 
             case R.id.navigation_profile:
-                ShowPopup();;
+                ShowPopup();
                 break;
         }
 
